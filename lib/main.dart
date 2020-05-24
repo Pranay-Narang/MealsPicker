@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './categories.dart';
+import './meals.dart';
 
 void main() => runApp(MealsApp());
 
@@ -20,10 +21,13 @@ class MealsApp extends StatelessWidget {
               bodyText2: TextStyle(
                 color: Color.fromRGBO(20, 51, 51, 1),
               ),
-              headline6: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed')
+              headline6: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'),
             ),
       ),
       home: Categories(),
+      routes: {
+        '/category-meals': (ctx) => MealsScreen(),
+      },
     );
   }
 }
