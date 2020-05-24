@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './categories.dart';
 void main() => runApp(MealsApp());
 
 class MealsApp extends StatelessWidget {
@@ -10,21 +11,7 @@ class MealsApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  HomePageState createState() => HomePageState();
-}
-
-class HomePageState extends State<HomePage> {
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Meals App"),
-      ),
+      home: Categories(),
     );
   }
 }
