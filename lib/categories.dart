@@ -10,6 +10,7 @@ class Categories extends StatelessWidget {
         title: Text('Meals App'),
       ),
       body: GridView(
+        padding: EdgeInsets.all(25),
         children: DUMMY_CATEGORIES
             .map((e) => CategoryItems(e.title, e.color))
             .toList(),
