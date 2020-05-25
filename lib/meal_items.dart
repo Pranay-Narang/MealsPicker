@@ -84,15 +84,18 @@ class MealItems extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 20,
-                  right: 10,
+                  right: -10,
                   child: Container(
-                    width: 250,
-                    color: Colors.black54,
+                    decoration: BoxDecoration(
+                      color: Colors.black54,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    width: 170,
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontSize: 26,
+                        fontSize: 20,
                         color: Colors.white,
                       ),
                       softWrap: true,
