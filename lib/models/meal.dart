@@ -9,7 +9,7 @@ enum Complexity {
 enum Affordability {
   Affordable,
   Pricey,
-  Luxorious,
+  Luxurious,
 }
 
 class Meal {
