@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './main_drawer.dart';
+
 class FiltersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,6 +11,7 @@ class FiltersScreen extends StatelessWidget {
       body: Center(
         child: Text('Filters Man'),
       ),
+      drawer: MainDrawer(),
     );
   }
 }
