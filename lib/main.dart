@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './categories.dart';
 import './meals.dart';
 import './meal_details.dart';
+import './tabs.dart';
 
 void main() => runApp(MealsApp());
 
@@ -25,7 +25,7 @@ class MealsApp extends StatelessWidget {
               headline6: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'),
             ),
       ),
-      home: Categories(),
+      home: TabsScreen(),
       routes: {
         '/category-meals': (ctx) => MealsScreen(),
         '/meal-details': (ctx) => MealDetails(),
