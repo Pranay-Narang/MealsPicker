@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './meals.dart';
 import './meal_details.dart';
 import './tabs.dart';
+import './filters.dart';
 
 void main() => runApp(MealsApp());
 
@@ -29,6 +30,7 @@ class MealsApp extends StatelessWidget {
       routes: {
         '/category-meals': (ctx) => MealsScreen(),
         '/meal-details': (ctx) => MealDetails(),
+        '/filters': (ctx) => FiltersScreen(),
       },
     );
   }
