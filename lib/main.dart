@@ -4,6 +4,8 @@ import './meals.dart';
 import './meal_details.dart';
 import './tabs.dart';
 import './filters.dart';
+import './models/meal.dart';
+import './dummy_data.dart';
 
 void main() => runApp(MealsApp());
 
@@ -19,6 +21,34 @@ class _MealsAppState extends State<MealsApp> {
     'vegan': false,
     'vegetarian': false,
   };
+
+  List<Meal> availableMeals = DUMMY_MEALS;
+
+  void setFilters(Map<String, bool> filterData) {
+    setState(() {
+      filters = filterData;
+
+      availableMeals = DUMMY_MEALS.where((element) {
+        if(filters['gluten'] && !element.isGlutenFree) {
+          return false;
+        }
+
+        if(filters['lactose'] && !element.isLactoseFree) {
+          return false;
+        }
+
+        if(filters['vegan'] && !element.isVegan) {
+          return false;
+        }
+
+        if(filters['vegetarian'] && !element.isVegetarian) {
+          return false;
+        }
+
+        return true;
+      }).toList();
+    });
+  }
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,9 +70,9 @@ class _MealsAppState extends State<MealsApp> {
       ),
       home: TabsScreen(),
       routes: {
-        '/category-meals': (ctx) => MealsScreen(),
+        '/category-meals': (ctx) => MealsScreen(availableMeals),
         '/meal-details': (ctx) => MealDetails(),
-        '/filters': (ctx) => FiltersScreen(),
+        '/filters': (ctx) => FiltersScreen(setFilters, filters),
       },
     );
   }
