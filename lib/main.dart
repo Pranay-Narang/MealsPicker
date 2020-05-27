@@ -7,7 +7,19 @@ import './filters.dart';
 
 void main() => runApp(MealsApp());
 
-class MealsApp extends StatelessWidget {
+class MealsApp extends StatefulWidget {
+  @override
+  _MealsAppState createState() => _MealsAppState();
+}
+
+class _MealsAppState extends State<MealsApp> {
+  Map<String, bool> filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Meal Picker',
