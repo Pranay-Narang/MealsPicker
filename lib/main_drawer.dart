@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/tabs.dart';
+
+import './tabs.dart';
+
+import './models/meal.dart';
 
 class MainDrawer extends StatelessWidget {
+  final List<Meal> favouriteMeals;
+
+  MainDrawer(this.favouriteMeals);
+
   Widget buildListTile(String text, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(
@@ -44,7 +51,7 @@ class MainDrawer extends StatelessWidget {
             'Meals',
             Icons.restaurant,
             () => Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(builder: (_) => TabsScreen())),
+                .pushReplacement(MaterialPageRoute(builder: (_) => TabsScreen(favouriteMeals))),
           ),
           buildListTile(
             'Filters',

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import './main_drawer.dart';
 
+import './models/meal.dart';
+
 class FiltersScreen extends StatefulWidget {
+  final List<Meal> favouriteMeals;
   final Function saveFilters;
   final Map<String, bool> currentFilters;
 
-  FiltersScreen(this.saveFilters, this.currentFilters); 
+  FiltersScreen(this.saveFilters, this.currentFilters, this.favouriteMeals); 
 
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
@@ -56,7 +59,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           )
         ],
       ),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(widget.favouriteMeals),
       body: Column(
         children: <Widget>[
           Container(

@@ -23,31 +23,52 @@ class _MealsAppState extends State<MealsApp> {
   };
 
   List<Meal> availableMeals = DUMMY_MEALS;
+  List<Meal> favouriteMeals = [];
 
   void setFilters(Map<String, bool> filterData) {
     setState(() {
       filters = filterData;
 
       availableMeals = DUMMY_MEALS.where((element) {
-        if(filters['gluten'] && !element.isGlutenFree) {
+        if (filters['gluten'] && !element.isGlutenFree) {
           return false;
         }
 
-        if(filters['lactose'] && !element.isLactoseFree) {
+        if (filters['lactose'] && !element.isLactoseFree) {
           return false;
         }
 
-        if(filters['vegan'] && !element.isVegan) {
+        if (filters['vegan'] && !element.isVegan) {
           return false;
         }
 
-        if(filters['vegetarian'] && !element.isVegetarian) {
+        if (filters['vegetarian'] && !element.isVegetarian) {
           return false;
         }
 
         return true;
       }).toList();
     });
+  }
+
+  void toggleFav(String mealId) {
+    final existingIndex =
+        favouriteMeals.indexWhere((element) => element.id == mealId);
+
+    if (existingIndex >= 0) {
+      setState(() {
+        favouriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        favouriteMeals
+            .add(DUMMY_MEALS.firstWhere((element) => element.id == mealId));
+      });
+    }
+  }
+
+  bool isMealFav(String id) {
+    return favouriteMeals.any((element) => element.id == id);
   }
 
   Widget build(BuildContext context) {
@@ -68,11 +89,11 @@ class _MealsAppState extends State<MealsApp> {
               headline6: TextStyle(fontSize: 20, fontFamily: 'RobotoCondensed'),
             ),
       ),
-      home: TabsScreen(),
+      home: TabsScreen(favouriteMeals),
       routes: {
         '/category-meals': (ctx) => MealsScreen(availableMeals),
-        '/meal-details': (ctx) => MealDetails(),
-        '/filters': (ctx) => FiltersScreen(setFilters, filters),
+        '/meal-details': (ctx) => MealDetails(toggleFav, isMealFav),
+        '/filters': (ctx) => FiltersScreen(setFilters, filters, favouriteMeals),
       },
     );
   }
